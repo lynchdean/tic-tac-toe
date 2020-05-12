@@ -2,7 +2,7 @@
 Expanding upon the React tic-tac-toe tutorial 
 
 
-##Improvements:
+## Improvements:
 - [x] Display the location for each move in the format (col, row) in the move history list
 - [x] Bold the currently selected item in the move list
 - [ ] Rewrite Board to use two loops to make the squares instead of hardcoding them
@@ -12,7 +12,7 @@ Expanding upon the React tic-tac-toe tutorial
 - [ ] *Riain's Task:* Convert to functional components
 
 ***
-###Display the location for each move in the format (col, row) in the move history list:
+### Display the location for each move in the format (col, row) in the move history list:
 First I needed to get the index of the square for each move so that I could work out 
 their column and row. When trying to figure out this one I ended up with two choices. 
 - I could compare the *squares* array from the current move with the previous move when I'm generating the buttons to 
@@ -39,7 +39,7 @@ for each move button, every time the board is re-rendered.
         `Go to game start`;
 
 ***
-###Bold the currently selected item in the move list
+### Bold the currently selected item in the move list
 This was simple enough tom implement, I just added an if/else clause that checked which move matches the current move 
 in the game state.  
 
