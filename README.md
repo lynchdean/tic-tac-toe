@@ -23,38 +23,38 @@ Ultimately I decided to use the second method. I did this because the first opti
 for each move button, every time the board is re-rendered. 
 
 **New moves array inside the Game constructor:**
-
+```javascript
     history: [{
         squares: Array(9).fill(null),
         moves: Array(9).fill(null),
     }],
-
+```
 **Changes inside the Game render method to calculate the col and row values:**
-    
+```javascript
     const lastSq = step.moves[move - 1]
     const row = Math.floor(lastSq / 3) + 1
     const col = (lastSq % 3) + 1
     const desc = move ?
         `Go to move #${move} (${row}, ${col})` :
         `Go to game start`;
-
+```  
 ***
 ## Bold the currently selected item in the move list
 This was simple enough tom implement, I just added an if/else clause that checked which move matches the current move 
 in the game state.  
-
+```javascript
         <button
             style={this.state.stepNumber === move ? { fontWeight: 'bold' } : { fontWeight: 'normal' }}
             onClick={() => this.jumpTo(move)}>{desc}
         </button>
-
+```
 ***
 ##  Rewrite Board to use two loops to make the squares instead of hardcoding them
 This was another relatively simple task to implement once I understood how JSX works a little more. I removed the 
 hardcoded board, and replaced it with the two new loops, one to loop through the rows, and one to loop through the 
 squares in each row. I also extracted the part of the code responsible for making each of the individual rows into its 
 own method.
-  
+```javascript
     renderRow(row) {
         const squares = [];
         const firstIndex = row * 3;
@@ -75,11 +75,11 @@ own method.
         }
         return <div>{rows}</div>;
     }
-
+```
 I also had to add a key property inside the Square tag in the renderSquare method. In React each child in an array or iterator 
 should have a unique key property assigned to it. This helps React to identify which items have been modified, and 
-otherwise would throw a warning.
-
-    key={"Square " + i} 
-    
+without it would throw a warning.
+```javascript
+    key={"Square " + i}
+```
  
