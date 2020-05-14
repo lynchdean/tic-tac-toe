@@ -24,29 +24,29 @@ for each move button, every time the board is re-rendered.
 
 **New moves array inside the Game constructor:**
 ```javascript
-    history: [{
-        squares: Array(9).fill(null),
-        moves: Array(9).fill(null),
-    }],
+history: [{
+    squares: Array(9).fill(null),
+    moves: Array(9).fill(null),
+}],
 ```
 **Changes inside the Game render method to calculate the col and row values:**
 ```javascript
-    const lastSq = step.moves[move - 1]
-    const row = Math.floor(lastSq / 3) + 1
-    const col = (lastSq % 3) + 1
-    const desc = move ?
-        `Go to move #${move} (${row}, ${col})` :
-        `Go to game start`;
+const lastSq = step.moves[move - 1]
+const row = Math.floor(lastSq / 3) + 1
+const col = (lastSq % 3) + 1
+const desc = move ?
+    `Go to move #${move} (${row}, ${col})` :
+    `Go to game start`;
 ```  
 ***
 ## Bold the currently selected item in the move list
 This was simple enough tom implement, I just added an if/else clause that checked which move matches the current move 
 in the game state.  
 ```javascript
-        <button
-            style={this.state.stepNumber === move ? { fontWeight: 'bold' } : { fontWeight: 'normal' }}
-            onClick={() => this.jumpTo(move)}>{desc}
-        </button>
+<button
+    style={this.state.stepNumber === move ? { fontWeight: 'bold' } : { fontWeight: 'normal' }}
+    onClick={() => this.jumpTo(move)}>{desc}
+</button>
 ```
 ***
 ##  Rewrite Board to use two loops to make the squares instead of hardcoding them
@@ -55,31 +55,31 @@ hardcoded board, and replaced it with the two new loops, one to loop through the
 squares in each row. I also extracted the part of the code responsible for making each of the individual rows into its 
 own method.
 ```javascript
-    renderRow(row) {
-        const squares = [];
-        const firstIndex = row * 3;
-        for (let i = 0; i < 3; i++) {
-            squares.push(this.renderSquare(firstIndex + i));
-        }
-        return (
-            <div key={"Row " + row}
-                 className="board-row">{squares}
-            </div>
-        );
+renderRow(row) {
+    const squares = [];
+    const firstIndex = row * 3;
+    for (let i = 0; i < 3; i++) {
+        squares.push(this.renderSquare(firstIndex + i));
     }
-    
-    render() {
-        const rows = [];
-        for (let i = 0; i < 3; i++) {
-            rows.push(this.renderRow(i));
-        }
-        return <div>{rows}</div>;
+    return (
+        <div key={"Row " + row}
+             className="board-row">{squares}
+        </div>
+    );
+}
+
+render() {
+    const rows = [];
+    for (let i = 0; i < 3; i++) {
+        rows.push(this.renderRow(i));
     }
+    return <div>{rows}</div>;
+}
 ```
 I also had to add a key property inside the Square tag in the renderSquare method. In React each child in an array or iterator 
 should have a unique key property assigned to it. This helps React to identify which items have been modified, and 
 without it would throw a warning.
 ```javascript
-    key={"Square " + i}
+key={"Square " + i}
 ```
  
