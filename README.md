@@ -2,17 +2,17 @@
 Expanding upon the React tic-tac-toe tutorial 
 
 
-##Improvements:
+## Improvements:
 - [x] Display the location for each move in the format (col, row) in the move history list
 - [x] Bold the currently selected item in the move list
-- [x] Rewrite Board to use two loops to make the squares instead of hardcoding them
+- [ ] Rewrite Board to use two loops to make the squares instead of hardcoding them
 - [ ] Add a toggle button that lets you sort the moves in either ascending or descending order
 - [ ] When someone wins, highlight the three squares that caused the win
 - [ ] When no one wins, display a message about the result being a draw
 - [ ] *Riain's Task:* Convert to functional components
 
 ***
-##Display the location for each move in the format (col, row) in the move history list:
+## Display the location for each move in the format (col, row) in the move history list:
 First I needed to get the index of the square for each move so that I could work out 
 their column and row. When trying to figure out this one I ended up with two choices. 
 - I could compare the *squares* array from the current move with the previous move when I'm generating the buttons to 
@@ -39,7 +39,7 @@ for each move button, every time the board is re-rendered.
         `Go to game start`;
 
 ***
-##Bold the currently selected item in the move list
+## Bold the currently selected item in the move list
 This was simple enough tom implement, I just added an if/else clause that checked which move matches the current move 
 in the game state.  
 
@@ -49,7 +49,7 @@ in the game state.
         </button>
 
 ***
-##Rewrite Board to use two loops to make the squares instead of hardcoding them
+##  Rewrite Board to use two loops to make the squares instead of hardcoding them
 This was another relatively simple task to implement once I understood how JSX works a little more. I removed the 
 hardcoded board, and replaced it with the two new loops, one to loop through the rows, and one to loop through the 
 squares in each row. I also extracted the part of the code responsible for making each of the individual rows into its 
