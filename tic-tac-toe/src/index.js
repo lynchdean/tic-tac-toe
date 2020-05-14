@@ -13,33 +13,32 @@ function Square(props) {
 class Board extends React.Component {
     renderSquare(i) {
         return (
-            <Square
-                value={this.props.squares[i]}
-                onClick={() => this.props.onClick(i)}
+            <Square key={"Square " + i}
+                    value={this.props.squares[i]}
+                    onClick={() => this.props.onClick(i)}
             />
         );
     }
 
-    render() {
+    renderRow(row) {
+        const squares = [];
+        const firstIndex = row * 3;
+        for (let i = 0; i < 3; i++) {
+            squares.push(this.renderSquare(firstIndex + i));
+        }
         return (
-            <div>
-                <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
-                </div>
+            <div key={"Row " + row}
+                 className="board-row">{squares}
             </div>
         );
+    }
+
+    render() {
+        const rows = [];
+        for (let i = 0; i < 3; i++) {
+            rows.push(this.renderRow(i));
+        }
+        return <div>{rows}</div>;
     }
 }
 
@@ -98,7 +97,7 @@ class Game extends React.Component {
             return (
                 <li key={move}>
                     <button
-                        style={this.state.stepNumber === move ? { fontWeight: 'bold' } : { fontWeight: 'normal' }}
+                        style={this.state.stepNumber === move ? {fontWeight: 'bold'} : {fontWeight: 'normal'}}
                         onClick={() => this.jumpTo(move)}>{desc}
                     </button>
                 </li>
