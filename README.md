@@ -6,7 +6,7 @@ Expanding upon the React tic-tac-toe tutorial
 - [x] Display the location for each move in the format (col, row) in the move history list
 - [x] Bold the currently selected item in the move list
 - [x] Rewrite Board to use two loops to make the squares instead of hardcoding them
-- [ ] Add a toggle button that lets you sort the moves in either ascending or descending order
+- [x] Add a toggle button that lets you sort the moves in either ascending or descending order
 - [ ] When someone wins, highlight the three squares that caused the win
 - [ ] When no one wins, display a message about the result being a draw
 - [ ] *Riain's Task:* Convert to functional components
@@ -82,4 +82,45 @@ without it would throw a warning.
 ```javascript
 key={"Square " + i}
 ```
- 
+## Add a toggle button that lets you sort the moves in either ascending or descending order
+First I added a boolean variable *movesAscending* to the games state to keep track of the current order of the moves
+```javascript
+class Game extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            // ...
+            movesAscending: true,
+        };
+    }
+    // ...
+}
+```
+Next I added a button inside the JSX expression returned inside the render method of the Game class
+```javascript
+<button onClick={() => this.handleToggle()}>
+    Sort: {movesAscending ? 'Descending' : 'Ascending'}
+</button>
+```
+This calls a new method, *handleToggle*, which flips the value of *movesAscending* once the button has been 
+clicked.
+```javascript
+handleToggle() {
+    this.setState({
+        movesAscending: !this.state.movesAscending
+    });
+}
+```
+Finally, I added the below line to reverse the list if *movesAscending* is currently false 
+```javascript
+render() {
+    // ...
+    const moves = history.map((step, move) => {
+        // ...
+    });
+
+    if (!movesAscending) moves.reverse();
+
+    // ...
+}
+```
