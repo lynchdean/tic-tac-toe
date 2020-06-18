@@ -8,7 +8,7 @@ Expanding improving upon the React tic-tac-toe tutorial
 - [x] Add a toggle button that lets you sort the moves in either ascending or descending order
 - [x] When someone wins, highlight the three squares that caused the win
 - [x] When no one wins, display a message about the result being a draw
-- [ ] *Riain's Task:* Convert to functional components
+- [x] *Riain's Task:* Convert to functional components
 - [ ] *Riain's Task:* Convert to TypeScript
 - [ ] *Personal Task:* Make it look better
 
