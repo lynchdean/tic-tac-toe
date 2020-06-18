@@ -8,7 +8,7 @@ Expanding improving upon the React tic-tac-toe tutorial
 - [x] Add a toggle button that lets you sort the moves in either ascending or descending order
 - [x] When someone wins, highlight the three squares that caused the win
 - [x] When no one wins, display a message about the result being a draw
-- [ ] *Riain's Task:* Convert to functional components
+- [x] *Riain's Task:* Convert to functional components
 - [ ] *Riain's Task:* Convert to TypeScript
 - [ ] *Personal Task:* Make it look better
 
@@ -126,10 +126,76 @@ render() {
 }
 ```
 ## When someone wins, highlight the three squares that caused the win
-TODO
+First I add new css formatting for the squares that cause the win.
+```css
+.square-winner {
+    background: lightgreen;
+}
+``` 
+Next in the *calculateWinner* function, if a winning line is found I now also send that winning line back 
+in the return statement alongside the winner. This change effects where the winner is referenced slightly, so we also 
+need to modify the Game classes *handleClick* method to reflect this.
+```javascript
+return {
+    winner: squares[a],
+    line: lines[i],
+};
+```
+```javascript
+ if (calculateWinner(squares).winner || squares[i]) {
+            return;
+}
+```
+I then added a variable called result to the render method in the Game class, and passed the line value through to Board 
+in the Board JSX template. 
+```javascript
+const result = calculateWinner(current.squares);
+```
+
+```javascript
+<Board
+    squares={current.squares}
+    onClick={(i) => handleClick(i)}
+    line={result.line}
+/>
+```
+I changed the renderSquare function to pass on a boolean value that will only return true *line* is not null, and the 
+current index (i) is one of the values of *line*.
+```javascript
+renderSquare(i) {
+    return (
+        <Square key={"Square" + i}
+                value={this.props.squares[i]}
+                onClick={() => this.props.onClick(i)}
+                line={this.props.line && this.props.line.includes(i)}
+        />
+    );
+}
+```
+Finally I add an if statement to the Square function to add the 'square-winner' CSS class to the square if *line* 
+evaluates as true. 
+```javascript
+function Square(props) {
+    let className = 'square'
+    if (props.line) {
+        className += ' square-winner'
+    }
+    return (
+        <button className={className} onClick={props.onClick}>
+            {props.value}
+        </button>
+    );
+}
+```
+
+
 ## When no one wins, display a message about the result being a draw
 I checked if the length of the game history was equal to 10, and if it was, I change the status message to 'Draw'. 
 (So much for these tasks being in order of increasing difficulty :smirk:)
 
-
+I also added functionality to change all the squares to grey id the game ends in a draw, which was done in a similar 
+way to how I highlight the winning squares.  
+## *Riain's Task:* Convert to functional components
+I used [this website](https://nimblewebdeveloper.com/blog/convert-react-class-to-function-component) as a reference 
+to convert my classes to functional components. 
 
