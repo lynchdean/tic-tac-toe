@@ -128,7 +128,8 @@ render() {
 ## When someone wins, highlight the three squares that caused the win
 TODO
 ## When no one wins, display a message about the result being a draw
-TODO
+I checked if the length of the game history was equal to 10, and if it was, I change the status message to 'Draw'. 
+(So much for these tasks being in order of increasing difficulty :smirk:)
 
 
 
