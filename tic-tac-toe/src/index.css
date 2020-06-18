@@ -33,7 +33,11 @@ ol, ul {
 }
 
 .square-winner {
-    background: lightgreen !important;
+    background: lightgreen;
+}
+
+.square-draw {
+    background: lightgrey;
 }
 
 .square:focus {

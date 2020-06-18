@@ -6,6 +6,8 @@ function Square(props) {
     let className = 'square'
     if (props.line) {
         className += ' square-winner'
+    } else if (props.draw) {
+        className += ' square-draw'
     }
     return (
         <button className={className} onClick={props.onClick}>
@@ -21,6 +23,7 @@ class Board extends React.Component {
                     value={this.props.squares[i]}
                     onClick={() => this.props.onClick(i)}
                     line={this.props.line && this.props.line.includes(i)}
+                    draw={this.props.draw}
             />
         );
     }
@@ -137,6 +140,7 @@ class Game extends React.Component {
                         squares={current.squares}
                         onClick={(i) => this.handleClick(i)}
                         line={result.line}
+                        draw={draw}
                     />
                 </div>
                 <div className="game-info">
