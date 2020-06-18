@@ -11,6 +11,7 @@ Expanding improving upon the React tic-tac-toe tutorial
 - [ ] *Riain's Task:* Convert to functional components
 - [ ] *Riain's Task:* Convert to TypeScript
 - [ ] *Personal Task:* Make it look better
+- [ ] *Personal Task:* Set up github pages for game
 
 ***
 ## Display the location for each move in the format (col, row) in the move history list:
