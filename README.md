@@ -1,6 +1,5 @@
 # tic-tac-toe
-Expanding upon the React tic-tac-toe tutorial 
-
+Expanding improving upon the React tic-tac-toe tutorial 
 
 ## Improvements:
 - [x] Display the location for each move in the format (col, row) in the move history list
@@ -10,6 +9,8 @@ Expanding upon the React tic-tac-toe tutorial
 - [ ] When someone wins, highlight the three squares that caused the win
 - [ ] When no one wins, display a message about the result being a draw
 - [ ] *Riain's Task:* Convert to functional components
+- [ ] *Riain's Task:* Convert to TypeScript
+- [ ] *Personal Task:* Make it look better
 
 ***
 ## Display the location for each move in the format (col, row) in the move history list:
@@ -124,3 +125,10 @@ render() {
     // ...
 }
 ```
+## When someone wins, highlight the three squares that caused the win
+TODO
+## When no one wins, display a message about the result being a draw
+TODO
+
+
+
