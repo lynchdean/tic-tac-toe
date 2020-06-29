@@ -71,25 +71,6 @@ function Game() {
     const winner = result.winner;
     const draw = history.length === 10;
 
-    const moves = history.map((step, move) => {
-        const lastSq = step.moves[move - 1]
-        const row = Math.floor(lastSq / 3) + 1
-        const col = (lastSq % 3) + 1
-        const desc = move ?
-            `Go to move #${move} (${row}, ${col})` :
-            `Go to game start`;
-        return (
-            <li key={move}>
-                <button
-                    style={stepNumber === move ? {fontWeight: 'bold'} : {fontWeight: 'normal'}}
-                    onClick={() => jumpTo(move)}>{desc}
-                </button>
-            </li>
-        );
-    });
-
-    if (!movesAscending) moves.reverse();
-
     let status;
     if (winner) {
         status = 'Winner: ' + winner;
@@ -117,10 +98,35 @@ function Game() {
                         Sort: {movesAscending ? 'Descending' : 'Ascending'}
                     </button>
                 </div>
-                <ol>{moves}</ol>
+                <ol>
+                    <Moves>
+                        history={history}
+                    </Moves>
+                </ol>
             </div>
         </div>
     );
+}
+
+function Moves(props) {
+    const moves = history.map((step, move) => {
+        const lastSq = step.moves[move - 1]
+        const row = Math.floor(lastSq / 3) + 1
+        const col = (lastSq % 3) + 1
+        const desc = move ?
+            `Go to move #${move} (${row}, ${col})` :
+            `Go to game start`;
+        return (
+            <li key={move}>
+                <button
+                    style={stepNumber === move ? {fontWeight: 'bold'} : {fontWeight: 'normal'}}
+                    onClick={() => jumpTo(move)}>{desc}
+                </button>
+            </li>
+        );
+    });
+    if (!movesAscending) moves.reverse();
+    return moves;
 }
 
 export default Game;

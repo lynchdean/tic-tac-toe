@@ -21,9 +21,10 @@ function Board(props) {
             squares.push(renderSquare(firstIndex + i));
         }
         return (
-            <div key={"Row " + row}
-                 className="board-row">{squares}
-            </div>
+            <Row key={row}
+                 className={"board-row"}
+                 value={squares}
+            />
         );
     }
 
@@ -32,6 +33,14 @@ function Board(props) {
         rows.push(renderRow(i));
     }
     return <div>{rows}</div>;
+}
+
+function Row(props) {
+    return (
+        <div key={"Row " + props.key} className="board-row">
+            {props.value}
+        </div>
+    );
 }
 
 export default Board;
