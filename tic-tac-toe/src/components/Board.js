@@ -22,7 +22,6 @@ function Board(props) {
         }
         return (
             <Row key={row}
-                 className={"board-row"}
                  value={squares}
             />
         );
